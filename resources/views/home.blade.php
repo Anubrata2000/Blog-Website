@@ -42,6 +42,15 @@
                         <input type="date" name="created_date" class="form-control"
                             value="{{ request('created_date') }}">
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <select name="per_page" class="form-control" onchange="this.form.submit()">
+                            @for ($i = 1; $i <= 20; $i++)
+                                <option value="{{ $i }}" {{ request('per_page') == $i ? 'selected' : '' }}>
+                                    {{ $i }} per page
+                                </option>
+                            @endfor
+                        </select>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>

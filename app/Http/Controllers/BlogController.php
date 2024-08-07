@@ -40,7 +40,10 @@ class BlogController extends Controller
             $query->whereDate('created_at', $request->input('created_date'));
         }
 
-        $blogs = $query->paginate(5);
+        // Get the number of items per page
+        $perPage = $request->input('per_page', 10); // Default to 10 if not provided
+
+        $blogs = $query->paginate($perPage);
 
         // Fetch authors for the dropdown
         $authors = $this->user->select('id', 'name')->get();
